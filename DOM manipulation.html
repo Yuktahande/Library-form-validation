@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation</title>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 id="heading">Welcome to DOM Manipulation</h1>
+    <p>This is a sample paragraph.</p>
+    <button id="changeTextButton">Change Text</button>
+    <button id="changeImage">Change Image</button>
+    <div id="imageContainer">
+        <img id="sampleImage" src="initial-image.jpg" alt="Initial Image">
+    </div>
+    <ul class="sampleList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <form id="sampleForm">
+        <input type="text" id="inputField" placeholder="Enter text">
+        <button type="button" id="submitFormButton">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript DOM manipulation
+        document.getElementById('heading').innerHTML = 'New Heading';
+        document.getElementsByTagName('p')[0].innerHTML = 'This paragraph has been updated.';
+        var listItems = document.getElementsByClassName('sampleList')[0].getElementsByTagName('li');
+        for (var i = 0; i < listItems.length; i++) {
+            listItems[i].style.color = 'blue';
+        }
+
+        // Change image source on button click
+        document.getElementById('changeImage').addEventListener('click', function() {
+            document.getElementById('sampleImage').src = 'new-image.jpg';
+        });
+
+        // Add a text node
+        var newNode = document.createTextNode('This is a new text node.');
+        document.body.appendChild(newNode);
+
+        // Delete a node
+        var nodeToDelete = document.getElementsByTagName('p')[0];
+        nodeToDelete.parentNode.removeChild(nodeToDelete);
+
+        // jQuery DOM manipulation
+        $('#changeTextButton').text('Change Text with jQuery');
+        $('#imageContainer').css('background-image', 'url(new-background.jpg)');
+        $('#submitFormButton').click(function() {
+            var inputValue = $('#inputField').val();
+            alert('You entered: ' + inputValue);
+        });
+        $('#sampleImage').attr('alt', 'New Image Alt Text');
+    </script>
+</body>
+</html>

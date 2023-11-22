@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Library management </title>
+<link rel="icon" type="image/x-icon" href="https://cdn1.iconfinder.com/data/icons/education-colors/100/15-64.png">
+</head>
+<body text = "black">
+    <body background = "librarybg.jpg">
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    
+    .form-container {
+        width: 50%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+</style>
+<title>Library Management System</title>
+</head>
+<body>
+<div class="form-container">
+        <h1 style ="color:slateblue;">Library Management System</h1> 
+      <form id="registrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+       
+	   <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+    
+        <label for="phone">Phone Number:</label>
+<input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required><br><br>
+
+<label for="address">Address:</label>
+<textarea id="address" name="address" rows="4" cols="30" required></textarea><br><br>
+
+<label for="education">Education Level:</label>
+<select id="education" name="education">
+    <option value="high_school">High School</option>
+    <option value="college">College</option>
+    <option value="university">University</option>
+    <option value="post_graduate">Post Graduate</option>
+</select><br><br>
+
+        
+        <input type="submit" value="Submit">
+		</form>
+</div>
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (event) {
+            // Name field validation
+            const name = document.getElementById("name").value;
+            if (name.trim() === "") {
+                alert("Name field cannot be empty.");
+                event.preventDefault();
+                return;
+            }
+
+            // Phone number validation
+            const phone = document.getElementById("phone").value;
+            if (!/^\d{10}$/.test(phone)) {
+                alert("Phone number must be 10 digits and contain only numeric values.");
+                event.preventDefault();
+                return;
+            }
+
+            // Password validation
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            if (password.length < 7 ||
+                !/[A-Z]/.test(password) ||
+                !/\d/.test(password) ||
+                !/[&$#@]/.test(password)) {
+                alert("Password must be at least 7 characters long and contain one capital letter, one digit, and one special character (&, $, #, @).");
+                event.preventDefault();
+                return;
+            }
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password fields do not match.");
+                event.preventDefault();
+                return;
+            }
+
+            // Email address validation
+            const email = document.getElementById("email").value;
+            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/.test(email)) {
+                alert("Invalid email address format.");
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
